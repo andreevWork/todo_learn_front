@@ -1,34 +1,55 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Todo list: project for learning frontend
 
-## Getting Started
+Here you gonna improve your frontend skills.
+We begin from very simple and useless todo application and build a cool thing
+with a lot of features.
 
-First, run the development server:
+## What do you need to know
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+- TS - beginner level
+- React - medium level
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This app based on Next.js, but you don\`t need to know it, don\`t worry.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Get started
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- make a fork from this repo
+- download the repo
+- make `nvm use` command(install `nvm` in case you don`t have it)
+- make `yarn` command(install `yarn` in case you don`t have it)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Working process
 
-## Learn More
+For developing and solving challenges run `yarn dev` command,
+it starts local a server with the app on 3000 port for you.
 
-To learn more about Next.js, take a look at the following resources:
+## How it works
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The repo has `learning` dir, each dir inside indicates one lesson and inside lesson`s dir we have:
+- `task.md` - file with description of your task
+- `hints.md` - some valuable hints for you, you can use them during the lesson, or you can check them after you solved the task before submit you result.
+- also, the repo has a branch with lesson`s name, and it contains my way to solving the task
+- pay attention that each lesson has an order number, and I strongly recommend do it only in the right order. Especially considering that each lesson starts when previous ends.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+So, the common way to learning:
+- choose your lesson
+- create a local branch in your repo(your fork of this repo)
+- open `task.md` file and read you task
+- completely understand what task require you to do
+- write your code, do your best and create pull request to your `master` branch
+- use `hints.md` file whatever you want, especially if you feel any difficulty
+- get final check of your solution, make it "production ready"
+- go to a branch of the lesson and compare my solutions to yours
+- my solution is the best, so trust it and draw conclusions if you have some differences
+- next lessons rely on my version of solution, so make it as similar as you be comfortable
+- finally, merge you branch into master
+- you are ready to next lesson
 
-## Deploy on Vercel
+## What if "I don`t get your solution"
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Of course, it was a joke about "the best solution", it\`s just my way, you will have yours, and if you understand mine, and you still think yours is good, it\`s completely fine.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+But, if you don\`t understand a solution, or you have any questions, you always can create a github issue,
+and I will answer your question. 
+
+
