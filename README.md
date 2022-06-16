@@ -1,34 +1,67 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Todo list: project for learning frontend
 
-## Getting Started
+Here you\`re going to improve your frontend skills. 
+We are going to begin from a very simple and useless todo application, and we are going to build a complex thing.
 
-First, run the development server:
+### Motivation
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+Almost all the courses online don\`t give you a "real world" experience.
+You write some apps from scratch or even just repeat the code from youtube video - it\`s not a good experience.
+Here we are going to fix that. 
+You will get some code, and you have to deal with it. 
+You will receive some instructions just a description of features/tasks you need to do and that\`s it.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**An important thing here**: you must learn to do what is required of you. 
+The lessons here have a good description, so basically it will be clear what you need to do,
+and one of your main goal here is doing only what the description asks. 
+You must complete each task as precise and fast as you can. 
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+So, the main rule here would be: **do your tasks, don\`t try to fix the code/types around you, just 
+implement your features and don\`t make the code worse**, this is it.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### What do you need to know before starting
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- TS - beginner level
+- React - medium level
 
-## Learn More
+This app is based on Next.js, but you don\`t need to know it, don\`t worry.
 
-To learn more about Next.js, take a look at the following resources:
+### Get started
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- make a fork from this repo
+- download the repo
+- run `nvm install` command(install `nvm` in case you don`t have it)
+- run `yarn` command(install `yarn` in case you don`t have it)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Working process
 
-## Deploy on Vercel
+For developing and solving challenges run `yarn dev` command,
+it starts a local server with the app on port 3000 for you.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### How it works
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The repo has `learning` dir, each dir inside indicates one lesson and inside lesson`s dir we have:
+- `task.md` - a file with the description of your task
+- `hints.md` - some valuable hints for you, you can use them during the lesson, or you can check them after you have solved the task before submitting your result. 
+- also, it contains a link to pull request with my solution.
+- pay attention that each lesson has an order number, and I strongly recommend doing it only in the right order. Especially considering that each lesson starts when the previous lesson ends.
+
+So, the common way to learning:
+- choose your lesson
+- create a local branch in your repo(your fork of this repo)
+- open `task.md` file and read you task
+- completely understand what task require you to do
+- write your code, do your best and create pull request to your `master` branch
+- use `hints.md` file whatever you want, especially if you feel any difficulty
+- go to a pull request from `hints.md` file, to compare your solution with mine
+- my solution is just a reference, and it could help you with some problems you might have, but don\`t worry if our solutions are not identical
+- the next lessons rely on my version of solution, so if you have a completely different code it could be better to make it as close as possible to mine.
+- finally, merge you branch into the master branch of your repo
+- you are ready for the next lesson
+
+### What if "I don`t get your solution"
+
+If you don\`t understand a solution, or you have any questions, you always can create a github issue,
+and I will answer your question. 
+
+
