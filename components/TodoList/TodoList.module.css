@@ -1,9 +1,9 @@
 .container {
-  height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0 10px;
+  flex-direction: column;
 }
 
 .task {
@@ -14,4 +14,16 @@
   padding: 0 20px;
   background: #b3a7c8;
   font-size: 18px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task:first-child {
+  margin-top: 0;
+}
+
+.removeIcon {
+  cursor: pointer;
 }
