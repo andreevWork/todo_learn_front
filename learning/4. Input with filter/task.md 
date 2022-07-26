@@ -1,0 +1,6 @@
+1. Make abstraction for local storage. Class with some api.
+2. Create tag id and change your db structure. Maintain a single source of truth.
+3. Search input where you can search by either task title or tag title. Debounce your search. 
+4. Create the most friendly search you can. For example, if you mistype something, you should 
+still be able to get something. 
+5. fix ui.

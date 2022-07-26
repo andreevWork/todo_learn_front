@@ -1,0 +1,31 @@
+.tags {
+  margin: 10px auto;
+  width: 50%;
+  min-height: 100px;
+}
+
+.tag {
+  display: inline-block;
+  border: 2px solid rgb(235, 233, 233);
+  border-radius: 9px;
+  background: gray;
+  padding: 5px;
+  margin: 5px;
+  color: white;
+  cursor: pointer;
+  transition: all .6s;
+}
+
+
+
+.activeTag {
+  display: inline-block;
+  border: 2px solid rgb(104, 105, 102);
+  border-radius: 9px;
+  background: rgb(65, 62, 62);
+  padding: 5px;
+  margin: 5px;
+  color: white;
+  cursor: pointer;
+  transition: all .6s;
+}

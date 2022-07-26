@@ -1,0 +1,61 @@
+.container {
+  position: relative;
+  height: max-content;
+
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  padding: 0 10px;
+  width: max-content;
+  margin: 0px auto;
+}
+
+.title {
+  overflow: scroll;
+}
+
+.task {
+  /* min-height: 40px; */
+  line-height: 40px;
+  position: relative;
+
+  width: 400px;
+  padding: 0 20px;
+  background: #b3a7c8;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.searchedTask {
+  min-height: 40px;
+  line-height: 40px;
+  position: relative;
+  min-width: 400px;
+  padding: 0 20px;
+
+  font-size: 18px;
+  color: orange;
+  cursor: pointer;
+}
+
+.taskTag {
+  color: white;
+}
+
+.searchedTaskTag {
+  color: rgb(179, 219, 214);
+}
+
+.delete {
+  display: inline;
+  position: absolute;
+  text-align: center;
+  right: -20%;
+  top: 0px;
+  height: 40px;
+  width: 60px;
+  background: rgb(196, 196, 150);
+  color: black;
+}
