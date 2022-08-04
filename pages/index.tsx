@@ -5,8 +5,8 @@ import { TodoCreateForm } from '../src/components/TodoCreateForm/TodoCreateForm'
 import { TodoList } from '../src/components/TodoList/TodoList';
 import { TagCreateForm } from '../src/components/TagCreateForm/TagCreateForm';
 import { TagList } from '../src/components/TagList/TagList';
-import { Task, statefulTag, Tag } from '../src/types';
-import { saveData, getData, getTagTitlesAndIds } from '../utils/handleData';
+import { Task } from '../src/types';
+import { saveData } from '../utils/handleData';
 import { getRandomNumber } from '../utils/generateRandomNumber';
 import { SearchInput } from '../src/components/SearchInput/SearchInput';
 import { useSearchInputValue, useTaskAndTags } from '../utils/customHooks';
@@ -16,17 +16,15 @@ import { useSearchInputValue, useTaskAndTags } from '../utils/customHooks';
 // second hook for all the states
 // a hook for filter with search input value. Reactivity is important in hooks.
 
-
 const Home: NextPage = () => {
-
-  const { state:taskAndTagState, setState:setTaskAndTagState} = useTaskAndTags();
-  
   const [inputValue, setInputValue] = useState<string>('');
 
   const [tagText, setTagText] = useState<string>('');
 
-  const [searchInputValue, setSearchInputValue] = useState<string>('');
+  const { state: taskAndTagState, setState: setTaskAndTagState } =
+    useTaskAndTags();
 
+  const [searchInputValue, setSearchInputValue] = useState<string>('');
 
   const { tasks, statefulTags } = taskAndTagState;
 
@@ -92,7 +90,6 @@ const Home: NextPage = () => {
       { id: randomNumber, title: tagText },
     ];
 
-
     setTaskAndTagState((prev) => ({
       ...prev,
       statefulTags: [
@@ -114,7 +111,6 @@ const Home: NextPage = () => {
   };
 
   const selectTag = (index: number) => {
-
     setTaskAndTagState((prev) => ({
       ...prev,
       statefulTags: prev.statefulTags.map((tag, i) => {
@@ -128,8 +124,6 @@ const Home: NextPage = () => {
 
   const taskClickHandler = (task: Task) => {
     const { tags } = task;
-
-  
 
     setTaskAndTagState((prev) => ({
       ...prev,
