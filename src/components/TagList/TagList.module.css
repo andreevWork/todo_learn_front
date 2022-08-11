@@ -14,18 +14,10 @@
   color: white;
   cursor: pointer;
   transition: all .6s;
+  user-select: none;
 }
 
-
-
 .activeTag {
-  display: inline-block;
   border: 2px solid rgb(104, 105, 102);
-  border-radius: 9px;
   background: rgb(65, 62, 62);
-  padding: 5px;
-  margin: 5px;
-  color: white;
-  cursor: pointer;
-  transition: all .6s;
 }

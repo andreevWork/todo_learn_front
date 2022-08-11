@@ -1,23 +1,21 @@
 import React from 'react';
 import styles from './TagList.module.css';
 import clsx from 'clsx';
+import {Tag, TagId} from "../../types";
 
 interface TagListProps {
-  allTags: { title: string; active: boolean }[];
-  selectTag: (index: number) => void;
+  allTags: Tag[];
+  selectTag: (tagId: TagId) => void;
 }
 
 export function TagList({ allTags, selectTag }: TagListProps) {
   return (
     <div className={styles.tags}>
-      {allTags?.map(({ title, active }, index) => (
+      {allTags?.map(({ title, active, id }) => (
         <div
-          key={index}
-          className={clsx({
-            [styles.activeTag]: active,
-            [styles.tag]: !active,
-          })}
-          onClick={() => selectTag(index)}
+          key={id}
+          className={clsx(styles.tag, { [styles.activeTag]: Boolean(active) })}
+          onClick={() => selectTag(id)}
         >
           {title}
         </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Task, statefulTag, Tag, tagsAndTagsType } from '../src/types';
+import {Task, Tag, RawTag, State} from '../src/types';
 import { getData, getTagTitlesAndIds } from '../utils/handleData';
 import { levenshteinDistance } from './levenshtein';
 
@@ -24,34 +24,25 @@ export const useSearchInputValue = (
 };
 
 
-export function useTaskAndTags() {
-  const [state, setState] = useState<tagsAndTagsType>({
+export function useTaskAndTags(): { state: State, setTask: any, setTag: any } {
+  const [state, setState] = useState<State>({
     tasks: [],
-    statefulTags: [],
+    tags: [],
   });
 
-  const loadData = React.useCallback(function loadDataFromLocalStorage(): void {
-    const tasks = getData('tasks');
+  React.useEffect(() => {
+    const tasks = getData<Task[]>('tasks') || [];
+    const tags = getData<RawTag[]>('tags') || [];
 
-    const tags = getData('tags');
+    setState({ tasks, tags });
 
-    const allTasks: Task[] = tasks && tasks;
-
-    const allTags: statefulTag[] =
-      tags &&
-      tags.map(({ id, title }: Tag) => ({
-        id,
-        title,
-        active: false,
-      }));
-
-    const titleFromTagId = getTagTitlesAndIds(allTags, allTasks);
-    setState({ tasks: titleFromTagId ?? [], statefulTags: allTags ?? [] });
+    // const titleFromTagId = getTagTitlesAndIds(allTags, tasks);
   }, []);
 
-  React.useEffect(() => {
-    loadData();
-  }, [loadData]);
+  let cachedState = state;
 
-  return { state, setState };
+  return {
+    state,
+    setState,
+  };
 }

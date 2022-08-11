@@ -1,4 +1,4 @@
-import { Task, statefulTag } from '../src/types';
+import {Tag, Task} from '../src/types';
 export const saveData = (
   dataName: string,
   dataValue: any,
@@ -7,17 +7,21 @@ export const saveData = (
   window.localStorage.setItem(dataName, serialize(dataValue));
 };
 
-export const getData = (
+export const getData = <T>(
   dataName: any,
   { deserialize = JSON.parse } = {}
-): any => {
-  const data = window.localStorage.getItem(dataName);
+): T | null => {
+  let data;
+
+  try {
+    data = window.localStorage.getItem(dataName);
+  } catch(e) {}
 
   return data ? deserialize(data) : null;
 };
 
 
-export function getTagTitlesAndIds(allTags: statefulTag[], allTasks: Task[]) {
+export function getTagTitlesAndIds(allTags: Tag[], allTasks: Task[]) {
   const tagDictionary: { [index: string]: string } = {};
 
   allTags?.forEach((tag) => {

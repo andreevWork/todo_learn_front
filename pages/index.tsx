@@ -1,11 +1,11 @@
 import type { NextPage } from 'next';
-import React, { Fragment, useState } from 'react';
+import React, {createRef, Fragment, useState} from 'react';
 import { Header } from '../src/components/Header/Header';
 import { TodoCreateForm } from '../src/components/TodoCreateForm/TodoCreateForm';
 import { TodoList } from '../src/components/TodoList/TodoList';
 import { TagCreateForm } from '../src/components/TagCreateForm/TagCreateForm';
 import { TagList } from '../src/components/TagList/TagList';
-import { Task } from '../src/types';
+import {TagId, Task} from '../src/types';
 import { saveData } from '../utils/handleData';
 import { getRandomNumber } from '../utils/generateRandomNumber';
 import { SearchInput } from '../src/components/SearchInput/SearchInput';
@@ -17,129 +17,62 @@ import { useSearchInputValue, useTaskAndTags } from '../utils/customHooks';
 // a hook for filter with search input value. Reactivity is important in hooks.
 
 const Home: NextPage = () => {
-  const [inputValue, setInputValue] = useState<string>('');
-
   const [tagText, setTagText] = useState<string>('');
 
-  const { state: taskAndTagState, setState: setTaskAndTagState } =
-    useTaskAndTags();
+  const { state, setTask, setTag } = useTaskAndTags();
 
   const [searchInputValue, setSearchInputValue] = useState<string>('');
 
-
-
-  
-
-  const { tasks, statefulTags } = taskAndTagState;
-
   // a hook for the search input value
-  const { search, searchResult } = useSearchInputValue(searchInputValue, tasks);
+  const { search, searchResult } = useSearchInputValue(searchInputValue, state.tasks);
 
-  const addTask = () => {
-    if (!inputValue) return;
-
-    const selectedTags = statefulTags?.filter(
-      ({ id, title, active }) => active
-    );
-
-    const tagDictionary: { [index: string]: string } = {};
-
-    statefulTags?.forEach((tag) => {
-      const key = tag.title;
-      tagDictionary[key] = tag.id;
-    });
-
-    const getIdFromTitle = tasks.map((task) => {
-      return {
-        ...task,
-        tags: task.tags.map((tag) => tagDictionary[tag]),
-      };
-    });
-
-    const allSessionTasks = [
-      ...getIdFromTitle,
+  const addTask = (title: string) => {
+    const newTasks = [
+      ...state.tasks,
       {
-        title: inputValue,
-        tags: selectedTags.map(({ id, title, active }) => id),
+        title,
+        tags: state.tags
+          .filter(({ active }) => Boolean(active))
+          .map(({ id }) => id),
       },
     ];
 
-    saveData('tasks', allSessionTasks);
-
-    const ResetTags = statefulTags.map((tag) => ({ ...tag, active: false }));
-
-    setTaskAndTagState({
-      tasks: [
-        ...tasks,
-        {
-          title: inputValue,
-          tags: selectedTags.map(({ id, title, active }) => title),
-        },
-      ],
-      statefulTags: ResetTags,
-    });
-
-    setInputValue('');
+    setTask(newTasks);
+    setTag(state.tags.map((tag) => ({ ...tag, active: false })));
   };
+
+  console.log('state', state);
 
   const addTag = () => {
     if (!tagText) return;
 
-    const randomNumber = getRandomNumber();
-
-    const allTagsTitle = statefulTags?.map(({ id, title }) => ({ id, title }));
-
-    const allSessionTags = [
-      ...allTagsTitle,
-      { id: randomNumber, title: tagText },
+    const newTags = [
+      ...state.tags,
+      {
+        id: getRandomNumber(),
+        title: tagText
+      }
     ];
 
-    setTaskAndTagState((prev) => ({
-      ...prev,
-      statefulTags: [
-        ...prev.statefulTags,
-        { id: randomNumber, title: tagText, active: false },
-      ],
-    }));
+    setTag(newTags);
 
-    saveData('tags', allSessionTags);
+    saveData('tags', newTags);
 
     setTagText('');
   };
 
   const handleDelete = (index: number) => {
-    const filteredTasks = tasks.filter((_, taskIndex) => taskIndex !== index);
+    const filteredTasks = state.tasks.filter((_, taskIndex) => taskIndex !== index);
+
     saveData('tasks', filteredTasks);
-
-    setTaskAndTagState((prev) => ({ ...prev, tasks: filteredTasks }));
+    setTask(filteredTasks);
   };
 
-  const selectTag = (index: number) => {
-    setTaskAndTagState((prev) => ({
-      ...prev,
-      statefulTags: prev.statefulTags.map((tag, i) => {
-        if (index === i) {
-          return { ...tag, active: !tag.active };
-        }
-        return tag;
-      }),
-    }));
-  };
+  const selectTag = (tagId: TagId) =>
+      setTag(state.tags.map((tag) => tag.id === tagId ? { ...tag, active: !tag.active } : tag));
 
-  const taskClickHandler = (task: Task) => {
-    const { tags } = task;
-
-    setTaskAndTagState((prev) => ({
-      ...prev,
-      statefulTags: prev.statefulTags.map((tag) => {
-        if (tags.includes(tag.title)) {
-          return { ...tag, active: true };
-        }
-
-        return { ...tag, active: false };
-      }),
-    }));
-  };
+  const taskClickHandler = (task: Task) =>
+      setTag(state.tags.map((tag) => ({ ...tag, active: task.tags.includes(tag.id) })));
 
   return (
     <Fragment>
@@ -151,18 +84,14 @@ const Home: NextPage = () => {
         addTag={addTag}
       />
 
-      <TagList allTags={statefulTags} selectTag={selectTag} />
+      <TagList allTags={state.tags} selectTag={selectTag} />
 
       <SearchInput
         searchInputValue={searchInputValue}
         setSearchInputValue={setSearchInputValue}
       />
 
-      <TodoCreateForm
-        addTask={addTask}
-        inputValue={inputValue}
-        setInputValue={setInputValue}
-      />
+      <TodoCreateForm addTask={addTask} />
 
       <TodoList
         search={search}

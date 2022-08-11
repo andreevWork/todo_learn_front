@@ -1,5 +1,5 @@
 // Global types.
-type TagId = string;
+export type TagId = string;
 
 export type Task = {
   title: string;
@@ -7,15 +7,15 @@ export type Task = {
 };
 
 
-export type Tag = {
+export type RawTag = {
   id: TagId;
   title: string;
 };
 
-export type statefulTag = Tag & { active: boolean; };
+export type Tag = RawTag & { active?: boolean; };
 
 
-export type tagsAndTagsType = {
+export type State = {
   tasks: Task[];
-  statefulTags: statefulTag[];
+  tags: Tag[];
 };

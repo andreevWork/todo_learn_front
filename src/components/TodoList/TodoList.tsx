@@ -24,7 +24,7 @@ export function TodoList({
       {searchResult.length > 0
         ? searchResult?.map((task: Task, index: number) => {
             const match = task.title.replace(
-              new RegExp(search, 'gi'),
+              new RegExp(`${search}`, 'gi'),
               (match) => `<span style="color:green">${match}</span>`
             );
 
@@ -32,8 +32,7 @@ export function TodoList({
               <div
                 key={index}
                 className={clsx(styles.task, {
-                  [styles.searchedTask]:
-                    search && task.title.toLowerCase().includes(search),
+                  [styles.searchedTask]: search && task.title.toLowerCase().includes(search),
                 })}
               >
                 <div
