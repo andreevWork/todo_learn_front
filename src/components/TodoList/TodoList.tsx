@@ -11,9 +11,6 @@ interface TodoListProps {
   taskClickHandler: (task: Task) => void;
 }
 
-// write a custom hook to take all the search tasks and searchInputValue and make TodoList display
-// put all the business logic in the index file and see if you need context ....
-
 
 export function TodoList({
   search,
@@ -68,7 +65,7 @@ export function TodoList({
               </div>
             );
           })
-        : searchResult.length === 0
+        : searchResult.length === 0 && search
         ? 'Sorry, no results found 🤷🏻‍♂️ 🤷🏻‍♂️ 🤷🏻‍♂️ ¯\\__(ツ)__/¯ '
         : ''}
     </div>

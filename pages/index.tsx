@@ -26,6 +26,10 @@ const Home: NextPage = () => {
 
   const [searchInputValue, setSearchInputValue] = useState<string>('');
 
+
+
+  
+
   const { tasks, statefulTags } = taskAndTagState;
 
   // a hook for the search input value
